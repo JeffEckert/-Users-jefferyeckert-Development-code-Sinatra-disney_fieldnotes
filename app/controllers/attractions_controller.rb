@@ -12,6 +12,8 @@ class AttractionsController < ApplicationController
          # Index
          # make a get request to "/attractions"
 
+         
+
          # Show
          # make a get request to "/attractions/:id"
 
