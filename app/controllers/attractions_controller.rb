@@ -12,7 +12,9 @@ class AttractionsController < ApplicationController
          # Index
          # make a get request to "/attractions"
 
-         
+         get 'recipes' do 
+            erb :'recipes/index' 
+         end
 
          # Show
          # make a get request to "/attractions/:id"
