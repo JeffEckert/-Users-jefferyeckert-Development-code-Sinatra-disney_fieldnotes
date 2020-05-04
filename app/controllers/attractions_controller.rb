@@ -13,11 +13,16 @@ class AttractionsController < ApplicationController
          # make a get request to "/attractions"
 
          get '/attractions' do 
+            @attractions = Attraction.all
             erb :'attractions/index'
          end
 
          # Show
          # make a get request to "/attractions/:id"
+         get '/attractions/:id' do
+            @attraction = attraction.find(params[:"id"])
+            erb :'attractions/Show'
+         end
 
     # UPDATE
         # Edit
