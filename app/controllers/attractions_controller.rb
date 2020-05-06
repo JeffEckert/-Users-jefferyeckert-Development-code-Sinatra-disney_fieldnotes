@@ -17,6 +17,7 @@ class AttractionsController < ApplicationController
                 attraction.save
                 redirect '/attractions'
             else
+                @error = "Data invalid. Please try again"
                 erb :'attractions/new'
             end
          end
@@ -28,7 +29,7 @@ class AttractionsController < ApplicationController
          # make a get request to "/attractions"
 
          get '/attractions' do 
-            @attractions = Attraction.all
+            @attractions = Attraction.all.reverse
             erb :'attractions/index'
          end
 
