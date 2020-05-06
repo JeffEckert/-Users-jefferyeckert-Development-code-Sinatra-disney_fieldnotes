@@ -3,7 +3,6 @@ class AttractionsController < ApplicationController
     # CREATE
          # New
          # make get request to "/recipes/new"
-
          get '/attractions/new' do
             erb :'attractions/new'
         end
@@ -12,13 +11,14 @@ class AttractionsController < ApplicationController
          # Create
          # make a post request to "/attractions"
          post '/attractions' do
-            Attraction.create(params)
-            binding.pry
-            # if attraction.save
-            #     redirect '/attractions'
-            # else
-            #     erb :'attractions/new'
-            # end
+           attraction = Attraction.new(params)
+    
+            if !attraction.name.empty? && !attraction.park.empty?
+                attraction.save
+                redirect '/attractions'
+            else
+                erb :'attractions/new'
+            end
          end
 
 
@@ -35,7 +35,7 @@ class AttractionsController < ApplicationController
          # Show
          # make a get request to "/attractions/:id"
          get '/attractions/:id' do
-            @attraction = attraction.find(params[:"id"])
+            @attraction = Attraction.find(params["id"])
             erb :'attractions/Show'
          end
 
