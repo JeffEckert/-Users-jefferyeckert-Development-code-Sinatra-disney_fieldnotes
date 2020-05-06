@@ -1,7 +1,7 @@
 <h1>Attractions</h1>
 
 <% @attractions.each do |attraction| %>
-<h2><a href="/attraction/<%= attractions.id" %><%= attraction.name %></a></h2>
+<h2><%= attraction.name %></h2>
 <p><%= attraction.notes %></p>
 <img src="<%= atttraction.image %>" alt ="attraction">
 <% end %>

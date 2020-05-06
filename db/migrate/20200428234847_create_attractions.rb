@@ -4,7 +4,7 @@ class CreateAttractions < ActiveRecord::Migration
       t.string :name
       t.string :park
       t.text   :notes
-      t.string :Photo
+      t.string :photo
       t.integer :user_id
     end
 

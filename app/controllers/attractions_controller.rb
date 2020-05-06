@@ -4,9 +4,24 @@ class AttractionsController < ApplicationController
          # New
          # make get request to "/recipes/new"
 
+         get '/attractions/new' do
+            erb :'attractions/new'
+        end
+
 
          # Create
          # make a post request to "/attractions"
+         post '/attractions' do
+            Attraction.create(params)
+            binding.pry
+            # if attraction.save
+            #     redirect '/attractions'
+            # else
+            #     erb :'attractions/new'
+            # end
+         end
+
+
 
     # READ
          # Index
