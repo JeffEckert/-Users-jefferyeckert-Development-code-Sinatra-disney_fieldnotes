@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20200428234847) do
     t.string  "name"
     t.string  "park"
     t.text    "notes"
-    t.string  "Photo"
+    t.string  "photo"
     t.integer "user_id"
   end
 
