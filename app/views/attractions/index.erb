@@ -3,7 +3,7 @@
 <a href="/attractions/new">Add an Attraction</a>
 <% @attractions.each do |attraction| %>
 <h2><a href="/attractions/<%= attraction.id %>"><%= attraction.name %></a></h2>
-<img src="<%= attraction.photo %>" alt ="attraction">
+<img src="<%= attraction.photo %>" alt ="<% attraction %>">
 <% #If the currently logged user created this entry %>
 <a href="/attractions/<%= attraction.id %>/edit">Edit</a>
 <% end %>

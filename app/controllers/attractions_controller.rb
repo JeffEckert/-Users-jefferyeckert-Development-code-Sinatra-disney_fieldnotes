@@ -66,6 +66,11 @@ class AttractionsController < ApplicationController
     # DESTROY
 
         # make a delete request to "/attractions/:id"
+        delete '/attractions/:id' do
+            attraction = Attraction.find(params[:id])
+            attraction.destroy 
+            redirect '/attractions'
+        end
 
 
 end
