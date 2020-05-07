@@ -30,22 +30,38 @@ class AttractionsController < ApplicationController
 
          get '/attractions' do 
             @attractions = Attraction.all.reverse
-            erb :'attractions/index'
+            erb :'/attractions/index'
          end
 
          # Show
          # make a get request to "/attractions/:id"
          get '/attractions/:id' do
-            @attraction = Attraction.find(params["id"])
-            erb :'attractions/Show'
+            @attraction = Attraction.find(params[:id])
+            erb :'/attractions/Show'
          end
 
     # UPDATE
         # Edit
         # make get request to "/attractions/:id/edit"
+        get '/attractions/:id/edit' do
+            @attraction = Attraction.find(params[:id])
+            erb :'attractions/edit'
+         end
 
         # Update
         # make a patch request to "/attractions/:id"
+        patch '/attractions/:id' do
+            @attraction = Attraction.find(params[:id])
+            # binding.pry
+            if !params["attraction"]["name"].empty? && !params["attraction"]["park"].empty? && !params["attraction"]["notes"].empty?
+
+                 @attraction.update(params["attraction"])  
+                redirect "attractions/#{params[:id]}"
+            else
+                @error = "Data invalid. Please try again"
+                erb :'attractions/edit'
+            end
+        end
 
     # DESTROY
 

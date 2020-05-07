@@ -1,0 +1,15 @@
+<h1>Edit Attraction for <%= @attraction.name %></h1>
+<p><%= @error %></p>
+<form action="/attractions/<%=@attraction.id%>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label>Name</label>
+    <input type="text" name="attraction[name]" value="<%=@attraction.name%>">
+    <label>Park</label>
+    <input type="text" name="attraction[park]" value="<%=@attraction.park%>">
+    <label>Notes</label>
+    <textarea name="attraction[notes]" value="<%=@attraction.notes%>"></textarea>
+    <label>Photo URL</label>
+    <input type="text" name="attraction[photo]" value="<%=@attraction.photo%>">
+    <button type="submit">Edit Attraction</button>
+
+</form>
