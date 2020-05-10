@@ -14,7 +14,6 @@ class UsersController < ApplicationController
         elsif User.find_by(username: user.username)
             @error = "Account with that username already Exists"
             erb :'users/signup'
-
         else
             user.save
             session[:user_id] = user.id

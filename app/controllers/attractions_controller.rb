@@ -29,8 +29,12 @@ class AttractionsController < ApplicationController
          # make a get request to "/attractions"
 
          get '/attractions' do 
-            @attractions = Attraction.all.reverse
-            erb :'/attractions/index'
+            if User.find_by(id: session[:user_id])
+                 @attractions = Attraction.all.reverse
+                 erb :'/attractions/index'
+            else
+                redirect '/login'
+            end
          end
 
          # Show
