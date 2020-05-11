@@ -4,15 +4,20 @@ class AttractionsController < ApplicationController
          # New
          # make get request to "/recipes/new"
          get '/attractions/new' do
-            erb :'attractions/new'
+            if logged_in?
+                erb :'attractions/new'
+            else
+                redirect '/login'
+            end
         end
 
 
          # Create
          # make a post request to "/attractions"
          post '/attractions' do
-           attraction = Attraction.new(params)
-    
+        filtered_params = params.reject{|key, value| key == "photo" && value.empty?}
+           attraction = current_user.attractions.build(filtered_params)
+           attraction.photo = nil if attraction.photo.empty?
             if !attraction.name.empty? && !attraction.park.empty?
                 attraction.save
                 redirect '/attractions'
@@ -28,8 +33,8 @@ class AttractionsController < ApplicationController
          # Index
          # make a get request to "/attractions"
 
-         get '/attractions' do 
-            if User.find_by(id: session[:user_id])
+         get '/attractions' do
+            if logged_in?
                  @attractions = Attraction.all.reverse
                  erb :'/attractions/index'
             else
@@ -40,16 +45,24 @@ class AttractionsController < ApplicationController
          # Show
          # make a get request to "/attractions/:id"
          get '/attractions/:id' do
-            @attraction = Attraction.find(params[:id])
-            erb :'/attractions/Show'
+            if logged_in?
+                @attraction = Attraction.find(params[:id])
+                erb :'/attractions/Show'
+            else
+                redirect '/login'
+            end
          end
 
     # UPDATE
         # Edit
         # make get request to "/attractions/:id/edit"
         get '/attractions/:id/edit' do
-            @attraction = Attraction.find(params[:id])
-            erb :'attractions/edit'
+            if logged_in?
+             @attraction = Attraction.find(params[:id])
+             erb :'attractions/edit'
+            else
+                redirect '/login'
+            end
          end
 
         # Update
