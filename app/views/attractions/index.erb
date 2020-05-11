@@ -4,7 +4,7 @@
 <% @attractions.each do |attraction| %>
     <h2><a href="/attractions/<%= attraction.id %>"><%= attraction.name %></a></h2>
     <img src="<%= attraction.photo %>" alt ="<% attraction %>">
-    <% if attraction.user && session[:user_id] == attraction.user.id %>
+    <% if current_user == attraction.user %>
          <a href="/attractions/<%= attraction.id %>/edit">Edit</a>
     <% end %>
 <% end %>

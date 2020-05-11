@@ -4,5 +4,7 @@
 <img src="<%= @attraction.photo %>" alt ="attraction">
 <form action="/attractions/<%= @attraction.id %>" method="post">
     <input type="hidden" name="_method" value="delete">
-    <button type="submit">Delete Attraction</button>
+    <% if @attraction.user == current_user %>
+         <button type="submit">Delete Attraction</button>
+    <% end %>
 </form>
