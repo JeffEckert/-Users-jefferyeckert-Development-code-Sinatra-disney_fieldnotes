@@ -14,11 +14,13 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+  <% if logged_in? == true %>
     <div>
       <div><a href="/attractions">Attractions</a></div>
       <div><a href="/">Home</a></div>
       <div><a href="/logout">Log Out</a></div>
     </div>
+    <% end %>
     <div class="wrapper">
 
         <%= yield %>

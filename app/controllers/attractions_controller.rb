@@ -4,11 +4,8 @@ class AttractionsController < ApplicationController
          # New
          # make get request to "/recipes/new"
          get '/attractions/new' do
-            if logged_in?
+            require_login
                 erb :'attractions/new'
-            else
-                redirect '/login'
-            end
         end
 
 
@@ -34,42 +31,32 @@ class AttractionsController < ApplicationController
          # make a get request to "/attractions"
 
          get '/attractions' do
-            if logged_in?
+                require_login
                  @attractions = Attraction.all.reverse
                  erb :'/attractions/index'
-            else
-                redirect '/login'
-            end
          end
 
          # Show
          # make a get request to "/attractions/:id"
          get '/attractions/:id' do
-            if logged_in?
-                @attraction = Attraction.find(params[:id])
+            require_login
+                @attraction = Attraction.find_by(id: params[:id])
                 erb :'/attractions/Show'
-            else
-                redirect '/login'
-            end
          end
 
     # UPDATE
         # Edit
         # make get request to "/attractions/:id/edit"
         get '/attractions/:id/edit' do
-            if logged_in?
+            require_login
              @attraction = Attraction.find(params[:id])
              erb :'attractions/edit'
-            else
-                redirect '/login'
-            end
          end
 
         # Update
         # make a patch request to "/attractions/:id"
         patch '/attractions/:id' do
             @attraction = Attraction.find(params[:id])
-            # binding.pry
             if !params["attraction"]["name"].empty? && !params["attraction"]["park"].empty? && !params["attraction"]["notes"].empty?
 
                  @attraction.update(params["attraction"])  
