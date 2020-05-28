@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-    #users can sign up
+    
 
     get '/signup' do
         erb :'users/signup'
     end
 
-    #users can delete account
+  
     post '/signup' do
         user = User.new(params)
         if user.username.empty? || user.password.empty?
