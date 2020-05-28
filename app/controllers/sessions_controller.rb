@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-    #user to be able to log in
+    
     get '/login' do
         erb :'users/login'
     end
