@@ -6,19 +6,17 @@ class SessionsController < ApplicationController
     end
     
     post '/login' do
-        if params["username"].empty? || params["password"].empty?
-            @error = "Username or Password invalid Please try again."
-            erb :'users/login'
+        user = User.find_by(:username => params[:username])
         
+        if user && user.authenticate(params[:password])
+            session[:user_id] = user.id
+            redirect '/attractions'
         else
-            if user = User.find_by(username: params["username"], password: params["password"])
-                session[:user_id] = user.id
-                redirect '/attractions'
-            else
-                @error = "Account not found"
-                erb :'users/login'
-            end
+            @error = "Account not found"
+            erb :'users/login'
         end
+
+
     end
 
 
