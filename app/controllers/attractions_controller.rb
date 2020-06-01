@@ -47,11 +47,13 @@ class AttractionsController < ApplicationController
             require_login
            
             @attraction = Attraction.find(params[:id])
-            if @attraction.user == current_user
-            end
+            
+            
             if !params["attraction"]["name"].empty? && !params["attraction"]["park"].empty? && !params["attraction"]["notes"].empty? 
+                if @attraction.user == current_user
 
                  @attraction.update(params["attraction"])  
+                end
                 redirect "attractions/#{params[:id]}"
             else
                 @error = "Data invalid. Please try again"
