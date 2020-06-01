@@ -45,9 +45,11 @@ class AttractionsController < ApplicationController
       
         patch '/attractions/:id' do
             require_login
-            # if @attraction.user == current_user
+           
             @attraction = Attraction.find(params[:id])
-            if !params["attraction"]["name"].empty? && !params["attraction"]["park"].empty? && !params["attraction"]["notes"].empty?
+            if @attraction.user == current_user
+            end
+            if !params["attraction"]["name"].empty? && !params["attraction"]["park"].empty? && !params["attraction"]["notes"].empty? 
 
                  @attraction.update(params["attraction"])  
                 redirect "attractions/#{params[:id]}"

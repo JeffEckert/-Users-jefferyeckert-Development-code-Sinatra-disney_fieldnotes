@@ -2,6 +2,7 @@
 <p><%= @error %></p>
 <form action="/attractions/<%=@attraction.id%>" method="post">
     <input type="hidden" name="_method" value="patch">
+    <% if @attraction.user == current_user %>
     <label>Name</label>
     <input type="text" name="attraction[name]" value="<%=@attraction.name%>">
     <label>Park</label>
@@ -11,5 +12,6 @@
     <label>Photo URL</label>
     <input type="text" name="attraction[photo]" value="<%=@attraction.photo%>">
     <button type="submit">Edit Attraction</button>
+    <% end %>
 
 </form>
