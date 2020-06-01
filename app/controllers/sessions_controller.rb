@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
         else
             @error = "Account not found"
             erb :'users/login'
+            
         end
 
 

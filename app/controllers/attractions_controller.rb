@@ -44,6 +44,8 @@ class AttractionsController < ApplicationController
 
       
         patch '/attractions/:id' do
+            require_login
+            # if @attraction.user == current_user
             @attraction = Attraction.find(params[:id])
             if !params["attraction"]["name"].empty? && !params["attraction"]["park"].empty? && !params["attraction"]["notes"].empty?
 
@@ -57,9 +59,12 @@ class AttractionsController < ApplicationController
 
     
         delete '/attractions/:id' do
-            attraction = Attraction.find(params[:id])
-            attraction.destroy 
-            redirect '/attractions'
+            require_login
+             attraction = Attraction.find(params[:id])
+            if attraction.user == current_user
+                attraction.destroy 
+                redirect '/attractions'
+            end
         end
 
 
