@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
             session[:user_id] = user.id
             redirect '/attractions'
         else
-            @error = "Account not found"
+            @error = "Account not found. Please try to login again."
             erb :'users/login'
             
         end
